@@ -1,11 +1,6 @@
+import { startSendOtpConsumer } from "./config/consumer.js";
 import "./config/env.js";
 import express from "express";
-import connectDB from "./config/db.js";
-import { connectRedis } from "./config/redis.js";
-import userRouter from "./routes/user.routes.js";
-import { connectRabbitMQ } from "./config/rabbitmq.js";
-import errorMiddleware from "./middlewares/errorMiddleware.js";
-import cors from "cors";
 
 const app = express();
 
@@ -13,25 +8,18 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
-app.use(cors());
 
 // Health check route (good practice)
 app.get("/", (req, res) => {
     res.send("🚀 Server is running");
 });
 
-//Routes
-app.use("/api/v1", userRouter);
-
-app.use(errorMiddleware);
-
 
 // ✅ Proper startup function
 const startServer = async () => {
     try {
-        await connectDB();
-        await connectRedis();
-        await connectRabbitMQ();
+
+        await startSendOtpConsumer();
 
         app.listen(PORT, () => {
             console.log(`✅ Server is running on port ${PORT}`);

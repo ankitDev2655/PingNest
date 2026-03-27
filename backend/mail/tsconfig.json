@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    // 📁 Project Structure
+    "rootDir": "./src",          // Source code location (write all TS files here)
+    "outDir": "./dist",          // Compiled JS output goes here
+
+    // ⚙️ Module & Target Configuration
+    "module": "nodenext",        // Supports ES Modules in Node.js (import/export)
+    "target": "es2020",          // Output JS version (modern but stable)
+
+    // 📚 Libraries & Types
+    "lib": ["es2020"],           // Available JS features (Promises, async/await, etc.)
+    "types": ["node"],           // Enables Node.js globals (process, __dirname, etc.)
+
+    // 🧾 Output Enhancements
+    "sourceMap": true,           // Helps debug TS code in compiled JS
+    "declaration": true,         // Generates .d.ts files (useful for libraries)
+    "declarationMap": true,      // Maps declaration files for better debugging
+
+    // 🔒 Type Safety
+    "strict": true,              // Enables all strict type-checking options
+
+    // ⚠️ Extra Safety Checks
+    "noUncheckedIndexedAccess": true, 
+    // Adds undefined checks when accessing arrays/objects (safer but slightly strict)
+
+    "skipLibCheck": true,        
+    // Skips type checking of node_modules (faster builds)
+
+    // 📦 Module Behavior
+    "verbatimModuleSyntax": true, 
+    // Keeps import/export syntax exactly as written (important for ESM)
+
+    "isolatedModules": true,     
+    // Ensures each file can be compiled independently (important for tools like Babel)
+
+    "moduleDetection": "force"   
+    // Treats every file as a module (avoids global scope issues)
+  }
+}
